@@ -5,7 +5,7 @@ nodes=("node1" "node2")
 context="k3s-cluster"
 
 createInstance () {
-    PUBKEY=<<< "$PUBLIC_SSH_KEY_PATH" multipass launch -n "$1" --cloud-init - <<EOF
+    PUBKEY=$(cat "$PUBLIC_SSH_KEY_PATH") multipass launch -n "$1" --cloud-init - <<EOF
 users:
 - name: ${USER}
   groups: sudo
