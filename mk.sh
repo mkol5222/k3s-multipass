@@ -5,18 +5,19 @@ nodes=("node1" "node2")
 context="k3s-cluster"
 
 createInstance () {
-    multipass launch -n "$1" --cloud-init - <<EOF
+    PUBKEY=<<< "$PUBLIC_SSH_KEY_PATH" multipass launch -n "$1" --cloud-init - <<EOF
 users:
 - name: ${USER}
   groups: sudo
   sudo: ALL=(ALL) NOPASSWD:ALL
   ssh_authorized_keys: 
-  - $(cat "$PUBLIC_SSH_KEY_PATH")
+  - ${PUBKEY}
 EOF
 }
 
 getNodeIP() {
-    echo $(multipass list | grep $1 | awk '{print $3}')
+    # echo $(multipass list | grep $1 | awk '{print $3}')
+    echo $(multipass ls --format json | jq -r --arg N master '.list[] | select(.name==$N) | .ipv4[0]')
 }
 
 installK3sMasterNode() {
