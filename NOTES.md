@@ -1,6 +1,5 @@
 # K3S cluster with multipass and k3sup
 
-https://picluster.ricsanfre.com/docs/metallb/
 
 ```shell
 ark get k3sup
@@ -39,3 +38,9 @@ curl http://$LBIP -vvv
 
 # remove
 for I in master node1 node2 ; do echo $I; multipass delete -p $I; done
+
+```
+
+Based on:
+https://dev.to/tomowatt/creating-a-k3s-cluster-with-k3sup-multipass-h26
+https://picluster.ricsanfre.com/docs/metallb/
