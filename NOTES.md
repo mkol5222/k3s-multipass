@@ -22,6 +22,10 @@ helm install metallb metallb/metallb --namespace metallb
 
 kubectl -n metallb get pod --watch
 
+# look at multipass VMs subnet
+multipass ls
+# modify range for MetalLB in config:
+code metallb-config.yml
 kubectl apply -f metallb-config.yml
 
 kubectl create deploy web --image nginx --replicas 3 --port 80
