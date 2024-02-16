@@ -6,7 +6,7 @@ ark get k3sup
 
 ssh-keygen -f k3s
 
-PUBLIC_SSH_KEY_PATH=./k3s.pub PRIVATE_SSH_KEY_PATH=./k3s . ./mk.sh
+PUBLIC_SSH_KEY_PATH=./k3s.pub PRIVATE_SSH_KEY_PATH=./k3s ./mk.sh
 
 # connect
 export KUBECONFIG=`pwd`/kubeconfig
